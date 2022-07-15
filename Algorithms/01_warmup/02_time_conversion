@@ -1,0 +1,31 @@
+def am_or_pm(time):
+  if time[-2:] == 'AM': 
+    return True 
+  elif time[-2:] == 'PM':
+    return False
+
+def format_hour(hour):
+  if len(hour) < 2:
+    hour = '0' + hour
+  return hour
+
+def get_rest(time): 
+  return ":".join(time.split(":")[1:])[:-2]
+
+def get_hour(time): 
+  return time.split(":")[0]
+
+def get_format_hours(time):
+  ap = am_or_pm(time)
+  hr = get_hour(time)
+  rest = get_rest(time)
+  if ap:
+    hr = ((int(hr) % 12))
+    formatted_hr = format_hour(str(hr))
+  else:
+    hr = ((int(hr) % 12)) + 12
+    formatted_hr = format_hour(str(hr))
+  return formatted_hr  + ':' + rest
+
+def timeConversion(time):
+  return  get_format_hours(time)
